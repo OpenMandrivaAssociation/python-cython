@@ -5,12 +5,12 @@
 
 Summary:	Language for writing C extensions to Python
 Name:		python-cython
-Version:	0.28.3
-Release:	2
+Version:	0.29.2
+Release:	1
 License:	Python
 Group:		Development/Python
 Url:		http://www.cython.org
-Source0:	https://files.pythonhosted.org/packages/b3/ae/971d3b936a7ad10e65cb7672356cff156000c5132cf406cb0f4d7a980fd3/Cython-%{version}.tar.gz
+Source0:	https://pypi.io/packages/source/C/Cython/Cython-%{version}.tar.gz
 Source1:	%{name}.rpmlintrc
 BuildRequires:	dos2unix
 BuildRequires:	pkgconfig(python3)
@@ -51,10 +51,10 @@ find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!python2|'
 find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python}|'
 
 %build 
-CFLAGS="$RPM_OPT_FLAGS" python setup.py build
+CFLAGS="%{optflags}" %py_build
 %if %{with python2}
 pushd %{py2dir}/%{tarname}-%{version}
-CFLAGS="$RPM_OPT_FLAGS" python2 setup.py build
+CFLAGS="%{optflags}" python2 setup.py build
 popd
 %endif # with_python2
 
@@ -67,13 +67,13 @@ pushd %{py2dir}/%{tarname}-%{version}
 python2 setup.py install --skip-build --root %{buildroot}
 mv %{buildroot}/usr/bin/cython %{buildroot}/usr/bin/cython2
 mv %{buildroot}/usr/bin/cygdb %{buildroot}/usr/bin/cygdb2
-rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
+rm -rf %{buildroot}%{py_puresitedir}/setuptools/tests
 popd
 %endif
 
 python setup.py install -O1 --skip-build --root %{buildroot}
-rm -rf %{buildroot}%{python_sitelib}/setuptools/tests
-rm -rf %{buildroot}/%{python_sitearch}/__pycache__/
+rm -rf %{buildroot}%{py_puresitedir}/setuptools/tests
+rm -rf %{buildroot}/%{py_platsitedir}/__pycache__/
 
 %if %{with check}
 %check
