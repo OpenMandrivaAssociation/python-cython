@@ -12,7 +12,7 @@ Version:	3.0.11
 Release:	1
 License:	Python
 Group:		Development/Python
-Url:		http://www.cython.org
+Url:		https://www.cython.org
 Source0:	https://github.com/cython/cython/archive/%{version}/cython-%{version}.tar.gz
 Source1:	%{name}.rpmlintrc
 Patch0:		cython-0.29.28-missing-header.patch
