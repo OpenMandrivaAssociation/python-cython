@@ -1,0 +1,13 @@
+diff -up cython-3.2.2/Cython/Compiler/ModuleNode.py.omv~ cython-3.2.2/Cython/Compiler/ModuleNode.py
+--- cython-3.2.2/Cython/Compiler/ModuleNode.py.omv~	2025-12-09 22:53:04.525579749 +0100
++++ cython-3.2.2/Cython/Compiler/ModuleNode.py	2025-12-09 22:54:16.575968003 +0100
+@@ -889,6 +889,9 @@ class ModuleNode(Nodes.Node, Nodes.Block
+         for inc in sorted(env.c_includes.values(), key=IncludeCode.sortkey):
+             if inc.location == inc.INITIAL:
+                 inc.write(code)
++        code.putln('#ifndef Py_BUILD_CORE')
++        code.putln('#define Py_BUILD_CORE 1')
++        code.putln('#endif')
+         code.putln('#include "internal/pycore_frame.h"') # Needed for PyFrameObject in Python 3.11a6, PyFrameObject is used heavily by cython
+         code.putln("#ifndef Py_PYTHON_H")
+         code.putln("    #error Python headers needed to compile C extensions, "

@@ -16,6 +16,7 @@ Url:		https://www.cython.org
 Source0:	https://github.com/cython/cython/archive/%{version}/cython-%{version}.tar.gz
 Source1:	%{name}.rpmlintrc
 Patch0:		cython-0.29.28-missing-header.patch
+Patch1:		cython-3.2.2-python-3.14.2.patch
 BuildRequires:	dos2unix
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python-setuptools
