@@ -8,7 +8,7 @@
 
 Summary:	Language for writing C extensions to Python
 Name:		python-cython
-Version:	3.2.4
+Version:	3.2.9
 Release:	1
 License:	Python
 Group:		Development/Python
@@ -33,7 +33,7 @@ the Python language. It is based on Pyrex, but provides more cutting
 edge functionality and optimizations.
 
 %prep
-%autosetup -p1 -n %{tarname}-%{version}
+%autosetup -p1 -n cython-3.2.9
 
 find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python}|'
 
