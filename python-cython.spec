@@ -8,8 +8,8 @@
 
 Summary:	Language for writing C extensions to Python
 Name:		python-cython
-Version:	3.3.0
-Release:	2
+Version:	3.3.1
+Release:	1
 License:	Python
 Group:		Development/Python
 Url:		https://www.cython.org
